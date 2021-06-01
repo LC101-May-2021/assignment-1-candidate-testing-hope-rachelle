@@ -8,15 +8,15 @@ let candidateName = "";
 let question = "Who was the first American woman in space?";
 let correctAnswer = "SALLY RIDE";
 let candidateAnswer = "";
-let questions = ["Who was the first American woman in space? ", "True or false: 5 kilometer == 5000 meters? ", "(5 + 3)/2 * 10 = ? ", "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ", "What is the minimum crew size for the ISS? "];
+let questions = ["1. Who was the first American woman in space? ", "2. True or false: 5 kilometer == 5000 meters? ", "3. (5 + 3)/2 * 10 = ? ", "4. Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ", "5. What is the minimum crew size for the ISS? "];
 let correctAnswers = ["SALLY RIDE", "TRUE", "40","TRAJECTORY", "3"];
-let candidateAnswers = "";
+let candidateAnswers = [];
 
 
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
   candidateName = input.question("Enter your Name: ");
-  console.log("Welcome, " + candidateName);
+  console.log(`\n Hello ${candidateName.toUpperCase()}, GOOD LUCK!`);
 }
 
 function askQuestion() {
@@ -24,13 +24,12 @@ function askQuestion() {
   //PART 1: candidateAnswer = input.question(question);
   //candidateAnswer = candidateAnswer.toUpperCase();
   for (i = 0; i < questions.length; i++) {
-    candidateAnswers = input.question(questions[i]);
-    candidateAnswers = candidateAnswers.toUpperCase();
-    console.log(candidateAnswers);
-    if (candidateAnswers === correctAnswers) {
-      console.log('answer correct');
+    candidateAnswers[i] = input.question(`\n ${questions[i]}`);
+    
+    if (candidateAnswers[i].toUpperCase() === correctAnswers[i]) {
+      console.log('Answer Correct');
     } else {
-      console.log('answer incorrect');
+      console.log('Answer Incorrect');
     }  
   }
 }
@@ -38,18 +37,38 @@ function askQuestion() {
   //candidateAnswers = candidateAnswers.toUpperCase();
 function gradeQuiz(candidateAnswers) {
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  
-  let grade = " ";
+  /*Part 1 let grade = " ";
   if (candidateAnswer ==="SALLY RIDE") {
     grade = "Test score, Pass";
   } 
   else {
     grade = "Test score, Fail, Please try again";
   }
-  
   console.log(grade);
-}
+}*/
+let numCorrect = 0;
+console.log(`\n>>>TEST RESULTS<<<\n`);
 
+for (let i = 0; i < questions.length; i++) {
+  if (candidateAnswers[i].toUpperCase() === correctAnswers[i]) {
+    numCorrect++;
+  }
+  console.log(`${questions[i]}
+  Your Answer: ${candidateAnswers[i].toUpperCase()}
+  Correct Answer: ${correctAnswers[i]}\n`)
+}
+  
+  let grade = ((numCorrect / questions.length) * 100);
+  if (grade >= 80) {
+    console.log('TEST STATUS: PASS');
+  } else {
+    console.log('TEST STATUS: FAIL');
+  }
+  
+  console.log(`TEST GRADE: ${grade}%`);
+
+  return grade;
+}
 function runProgram() {
   askForName();
   askQuestion();
