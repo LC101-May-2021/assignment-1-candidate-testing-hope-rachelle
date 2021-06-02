@@ -5,11 +5,11 @@ const input = require('readline-sync');
 // TODO 1.1a: Define candidateName // 
 let candidateName = "";
 // TODO 1.2a: Define question, correctAnswer, and candidateAnswer //
-let question = "Who was the first American woman in space?";
-let correctAnswer = "SALLY RIDE";
+let question = "Who was the first American woman in space? " ;
+let correctAnswer = "Sally Ride";
 let candidateAnswer = "";
-let questions = ["1. Who was the first American woman in space? ", "2. True or false: 5 kilometer == 5000 meters? ", "3. (5 + 3)/2 * 10 = ? ", "4. Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ", "5. What is the minimum crew size for the ISS? "];
-let correctAnswers = ["SALLY RIDE", "TRUE", "40","TRAJECTORY", "3"];
+let questions = ["Who was the first American woman in space? ", "True or false: 5 kilometer == 5000 meters? ", "(5 + 3)/2 * 10 = ? ", "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ", "What is the minimum crew size for the ISS? "];
+let correctAnswers = ["Sally Ride", "True", "40","Trajectory", "3"];
 let candidateAnswers = [];
 
 
@@ -24,9 +24,9 @@ function askQuestion() {
   //PART 1: candidateAnswer = input.question(question);
   //candidateAnswer = candidateAnswer.toUpperCase();
   for (i = 0; i < questions.length; i++) {
-    candidateAnswers[i] = input.question(`\n ${questions[i]}`);
+    candidateAnswers[i] = input.question(`\n ${i + 1}. ${questions[i]}`);
     
-    if (candidateAnswers[i].toUpperCase() === correctAnswers[i]) {
+    if (candidateAnswers[i].toUpperCase() === correctAnswers[i].toUpperCase()) {
       console.log('Answer Correct');
     } else {
       console.log('Answer Incorrect');
@@ -50,11 +50,11 @@ let numCorrect = 0;
 console.log(`\n>>>TEST RESULTS<<<\n`);
 
 for (let i = 0; i < questions.length; i++) {
-  if (candidateAnswers[i].toUpperCase() === correctAnswers[i]) {
+  if (candidateAnswers[i].toUpperCase() === correctAnswers[i].toUpperCase()) {
     numCorrect++;
   }
-  console.log(`${questions[i]}
-  Your Answer: ${candidateAnswers[i].toUpperCase()}
+  console.log(`${i + 1}. ${questions[i]}
+  Your Answer: ${candidateAnswers[i]}
   Correct Answer: ${correctAnswers[i]}\n`)
 }
   
